@@ -1,0 +1,91 @@
+name: Build NexusAI APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js (static export)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
+
+      - name: Install Capacitor CLI
+        run: npm install -g @capacitor/cli @capacitor/core @capacitor/android
+
+      - name: Init Capacitor Android
+        run: |
+          npx cap add android || true
+          npx cap sync android
+
+      - name: Copy custom icons
+        run: |
+          cp public/icons/icon-192.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png || true
+          cp public/icons/icon-512.png android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png || true
+
+      - name: Build Debug APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Rename APK
+        run: |
+          mkdir -p release
+          cp android/app/build/outputs/apk/debug/app-debug.apk release/NexusAI-v1.0.apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NexusAI-APK
+          path: release/NexusAI-v1.0.apk
+          retention-days: 30
+
+      - name: Create Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: NexusAI v1.0.${{ github.run_number }}
+          body: |
+            ## NexusAI APK - Build automatique
+            
+            ### Modèles disponibles
+            - ⚡ OpenAI (GPT-4.1, GPT-4o, o1-pro, o3)
+            - 🧠 Chipp AI (Gemini 2.5 Pro, 2.0 Flash)
+            - 🔀 RTM Router (DeepSeek, Kimi, Llama 4, Qwen 3)
+            - 🚀 Groq Speed (Llama 3.3 70B, Mixtral)
+            - 📥 Facebook Downloader
+            
+            ### Installation
+            1. Télécharger `NexusAI-v1.0.apk`
+            2. Activer "Sources inconnues" dans les paramètres Android
+            3. Installer l'APK
+          files: release/NexusAI-v1.0.apk
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
