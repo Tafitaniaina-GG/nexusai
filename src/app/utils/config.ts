@@ -14,3 +14,4 @@ export const PROVIDERS: any[] = [
   { id: 'typegpt', name: 'RTM Router', icon: LOGOS.typegpt, logo: LOGOS.typegpt, bgClass: 'bg-purple-500/10', description: 'DeepSeek' },
   { id: 'groq', name: 'Groq Speed', icon: LOGOS.groq, logo: LOGOS.groq, bgClass: 'bg-orange-500/10', description: 'IA Ultra-rapide' }
 ];
+// Last build: Tue Mar 24 07:04:59 EAT 2026
