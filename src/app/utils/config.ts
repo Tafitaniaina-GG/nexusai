@@ -26,7 +26,7 @@ export const PROVIDERS: any[] = [
     icon: LOGOS.chipp,
     logo: LOGOS.chipp,
     bgClass: 'bg-blue-500/10',
-    description: 'L\'IA de Google'
+    description: 'IA Google'
   },
   { 
     id: 'typegpt', 
@@ -42,6 +42,6 @@ export const PROVIDERS: any[] = [
     icon: LOGOS.groq,
     logo: LOGOS.groq,
     bgClass: 'bg-orange-500/10',
-    description: 'L\'IA ultra-rapide'
+    description: 'IA Ultra-rapide'
   }
 ];
