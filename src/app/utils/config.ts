@@ -15,3 +15,4 @@ export const PROVIDERS: any[] = [
   { id: 'groq', name: 'Groq Speed', icon: LOGOS.groq, logo: LOGOS.groq, bgClass: 'bg-orange-500/10', description: 'IA Ultra-rapide' }
 ];
 // Last build: Tue Mar 24 07:04:59 EAT 2026
+// Build du Tue Mar 24 07:08:14 EAT 2026
