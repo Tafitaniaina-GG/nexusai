@@ -95,3 +95,4 @@ export const PROVIDERS: AIProvider[] = [
   }
 ]
 // Fix duplicate classes: Tue Mar 24 07:30:47 EAT 2026
+// Fix conflict: Tue Mar 24 07:35:36 EAT 2026
