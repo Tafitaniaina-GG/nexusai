@@ -40,7 +40,7 @@ function ProviderIcon({ svgStr, size = 32 }: { svgStr: string; size?: number }) 
 
 // ─── Stats du dashboard ────────────────────────────────────────────────────
 function StatsBar() {
-  const totalModels = PROVIDERS.reduce?.((acc, p) =>
+  const totalModels = ((typeof window !== "undefined" && PROVIDERS) || []).reduce?.((acc, p) =>
     acc + p.modelGroups.reduce?.((a, g) => a + g.models.length, 0), 0)
   return (
     <div className="grid grid-cols-3 gap-3 mb-6">
@@ -263,7 +263,7 @@ export default function Dashboard() {
           CHOISIR UN MODÈLE
         </h2>
         <div className="space-y-3">
-          {PROVIDERS.map?.((p, i) => (
+          {((typeof window !== "undefined" && PROVIDERS) || []).map?.((p, i) => (
             <ProviderCard key={p.id} provider={p} index={i} onClick={() => navigate(p.id)} />
           ))}
         </div>
