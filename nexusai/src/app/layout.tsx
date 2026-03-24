@@ -1,16 +1,22 @@
-import type { Metadata, Viewport } from 'next'
+import type { Metadata } from 'next'
 import './globals.css'
 
-export const viewport: Viewport = {
-  width: 'device-width', initialScale: 1, maximumScale: 1,
-  userScalable: false, themeColor: '#F5F7FF',
-}
-
 export const metadata: Metadata = {
-  title: 'NexusAI – Tous les modèles IA',
-  description: 'Votre hub IA tout-en-un : ChatGPT, Gemini, DeepSeek, Groq et plus',
+  title: 'NexusAI',
+  description: 'Your All-in-One AI Universe',
   manifest: '/manifest.json',
-  appleWebApp: { capable: true, statusBarStyle: 'default', title: 'NexusAI' },
+  themeColor: '#0A0A0F',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'NexusAI',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -21,10 +27,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
-      <body>{children}</body>
+      <body className="noise-bg antialiased">
+        {children}
+      </body>
     </html>
   )
 }
