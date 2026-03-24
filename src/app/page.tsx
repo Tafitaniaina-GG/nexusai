@@ -40,15 +40,15 @@ function ProviderIcon({ svgStr, size = 32 }: { svgStr: string; size?: number }) 
 
 // ─── Stats du dashboard ────────────────────────────────────────────────────
 function StatsBar() {
-  const totalModels = PROVIDERS( [] || ).reduce((acc, p) =>
-    acc + p.modelGroups( [] || ).reduce((a, g) => a + g.models.length, 0), 0)
+  const totalModels = PROVIDERS.reduce?.((acc, p) =>
+    acc + p.modelGroups.reduce?.((a, g) => a + g.models.length, 0), 0)
   return (
     <div className="grid grid-cols-3 gap-3 mb-6">
       {[
         { value: PROVIDERS.length.toString(), label: 'Providers', icon: '🏢' },
         { value: `${totalModels}+`, label: 'Modèles', icon: '🤖' },
         { value: '100%', label: 'Gratuit', icon: '✅' },
-      ]( [] || ).map((s, i) => (
+      ].map?.((s, i) => (
         <div
           key={i}
           className={`card text-center py-3 px-2 anim-slide-up delay-${(i+2)*50}`}
@@ -68,7 +68,7 @@ function StatsBar() {
 function ProviderCard({ provider, index, onClick }: {
   provider: typeof PROVIDERS[0]; index: number; onClick: () => void
 }) {
-  const totalModels = provider.modelGroups( [] || ).reduce((a, g) => a + g.models.length, 0)
+  const totalModels = provider.modelGroups.reduce?.((a, g) => a + g.models.length, 0)
   const isFBDL = provider.id === 'fbdl'
 
   return (
@@ -113,7 +113,7 @@ function ProviderCard({ provider, index, onClick }: {
       {/* Aperçu modèles (si pas FBDL) */}
       {!isFBDL && provider.modelGroups[0] && (
         <div className="flex flex-wrap gap-1.5 mt-3 pt-3" style={{ borderTop:'1px solid var(--border)' }}>
-          {provider.modelGroups[0].models.slice(0, 4)( [] || ).map(m => (
+          {provider.modelGroups[0].models.slice(0, 4).map?.(m => (
             <span key={m.id} style={{
               fontSize:'.65rem', padding:'2px 7px', borderRadius:20,
               background:'var(--bg2)', color:'var(--text2)',
@@ -228,7 +228,7 @@ export default function Dashboard() {
               RÉCENTS
             </h2>
             <div className="space-y-2">
-              {recentChats( [] || ).map((r, i) => {
+              {recentChats.map?.((r, i) => {
                 const prov = PROVIDERS.find(p => p.id === r.providerId)
                 if (!prov) return null
                 return (
@@ -263,7 +263,7 @@ export default function Dashboard() {
           CHOISIR UN MODÈLE
         </h2>
         <div className="space-y-3">
-          {PROVIDERS( [] || ).map((p, i) => (
+          {PROVIDERS.map?.((p, i) => (
             <ProviderCard key={p.id} provider={p} index={i} onClick={() => navigate(p.id)} />
           ))}
         </div>
