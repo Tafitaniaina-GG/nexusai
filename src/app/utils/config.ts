@@ -11,6 +11,7 @@ export interface AIModel {
   description: string;
 }
 
+// Utilisation de any[] pour éviter les blocages de types stricts sur bgClass et logo
 export const PROVIDERS: any[] = [
   { 
     id: 'openai', 
@@ -26,7 +27,7 @@ export const PROVIDERS: any[] = [
     icon: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d47353046b5d9207ad239.svg',
     logo: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d47353046b5d9207ad239.svg',
     bgClass: 'bg-blue-500/10',
-    description: 'L\'IA puissante de Google'
+    description: 'L\'IA de Google'
   },
   { 
     id: 'typegpt', 
@@ -34,7 +35,7 @@ export const PROVIDERS: any[] = [
     icon: 'https://deepseek.com/favicon.ico',
     logo: 'https://deepseek.com/favicon.ico',
     bgClass: 'bg-purple-500/10',
-    description: 'DeepSeek & Kimi Router'
+    description: 'DeepSeek & Kimi'
   },
   { 
     id: 'groq', 
@@ -42,6 +43,6 @@ export const PROVIDERS: any[] = [
     icon: 'https://groq.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png',
     logo: 'https://groq.com/wp-content/uploads/2024/03/cropped-favicon-192x192.png',
     bgClass: 'bg-orange-500/10',
-    description: 'L\'IA la plus rapide au monde'
+    description: 'L\'IA ultra-rapide'
   }
 ];
