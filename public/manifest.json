@@ -1,0 +1,16 @@
+{
+  "name": "NexusAI",
+  "short_name": "NexusAI",
+  "description": "Votre hub IA tout-en-un : ChatGPT, Gemini, DeepSeek, Groq et plus",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F5F7FF",
+  "theme_color": "#4F46E5",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["productivity", "utilities"],
+  "lang": "fr"
+}
