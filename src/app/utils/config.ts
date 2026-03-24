@@ -1,17 +1,9 @@
 export const SERVER_URL = 'https://ketrikavola.onrender.com';
 export const getServerUrl = () => SERVER_URL;
 
-export type AIProvider = 'openai' | 'chipp' | 'typegpt' | 'groq';
+export type AIProvider = any;
+export type AIModel = any;
 
-export interface AIModel {
-  id: string;
-  name: string;
-  provider: AIProvider;
-  icon: string;
-  description: string;
-}
-
-// Utilisation de any[] pour éviter les blocages de types stricts sur bgClass et logo
 export const PROVIDERS: any[] = [
   { 
     id: 'openai', 
