@@ -1,7 +1,6 @@
 export const SERVER_URL = 'https://ketrikavola.onrender.com';
 export const getServerUrl = () => SERVER_URL;
 
-// On utilise any pour éviter TOUTE erreur de type pendant le build
 export type AIProvider = any;
 export type AIModel = any;
 
